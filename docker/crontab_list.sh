@@ -6,21 +6,11 @@
 10 8 * * * node /scripts/jd_nh.js >> /scripts/logs/jd_nh.log 2>&1
 # 京东炸年兽集爆竹(活动时间:2021-1-18至2021-2-11)怕有遗漏故多运行几次
 0 * * * * node /scripts/jd_nian.js >> /scripts/logs/jd_nian.log 2>&1
-# 专门收集每秒产生的爆竹(1小时运行一次)
-30 * * * * node /scripts/jd_nianCollect.js >> /scripts/logs/jd_nianCollect.log 2>&1
-# 京东炸年兽签到任务🧨
-50 0,1 * * * node /scripts/jd_nian_sign.js >> /scripts/logs/jd_nian_sign.log 2>&1
-# 京东炸年兽AR
-50 0,1,8 * * * node /scripts/jd_nian_ar.js >> /scripts/logs/jd_nian_ar.log 2>&1
-# 京东炸年兽小程序
-50 0,1,8 * * * node /scripts/jd_nian_wechat.js >> /scripts/logs/jd_nian_wechat.log 2>&1
 # 京东神仙书院(活动时间:2021-1-20至2021-2-5)
 30 6,8,12,22 * * * node /scripts/jd_immortal.js >> /scripts/logs/jd_immortal.log 2>&1
 # 京东神仙书院答题(活动时间:2021-1-20至2021-2-5)
 5 1 * * * node /scripts/jd_immortal_answer.js >> /scripts/logs/jd_immortal_answer.log 2>&1
-# 5G狂欢城(2021-1-30至2021-2-4)
-0 */6 * * * node /scripts/jd_5g.js >> /scripts/logs/jd_5g.log 2>&1
-0 */6 * * * node /scripts/jd_818.js >> /scripts/logs/jd_818.log 2>&1
+
 # 小鸽有礼(活动时间：2021年1月15日至2021年2月19日)
 5 7 * * * node /scripts/jd_xg.js >> /scripts/logs/jd_xg.log 2>&1
 # 小鸽有礼2(活动时间：2021年1月28日～2021年2月28日)
@@ -124,3 +114,5 @@
 10 7 * * * node /scripts/jd_ms.js >> /scripts/logs/jd_ms.log 2>&1
 # 京东超级盒子
 20 7 * * * node /scripts/jd_super_box.js >> /scripts/logs/jd_super_box.log 2>&1
+# 删除优惠券(默认注释，如需要自己开启，如有误删，已删除的券可以在回收站中还原，慎用)
+#20 9 * * 6 node /scripts/jd_delCoupon.js >> /scripts/logs/jd_delCoupon.log 2>&1
