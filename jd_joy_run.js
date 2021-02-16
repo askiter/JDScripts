@@ -32,7 +32,7 @@ hostname = draw.jdfcloud.com
 [Script]
 cron "15 10 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_joy_run.js, tag=宠汪汪邀请助力与赛跑助力
 http-response ^https:\/\/draw\.jdfcloud\.com(\/mirror)?\/\/api\/user\/addUser\?code= script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_joy_run.js, requires-body=true, timeout=10, tag=宠汪汪助力更新Token
-http-request ^https:\/\/draw\.jdfcloud\.com(\/mirror)?\/\/api\/user\/user\/detail\?openId= script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_joy_run.js, timeout=10, tag=宠汪汪助力获取Token
+http-request ^https:\/\/draw\.jdfcloud\.com(\/mirror)?\/\/api\/user\/user\/detail\?openId= script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_joy_run.js, timeout=3600, tag=宠汪汪助力获取Token
  **/
 const isRequest = typeof $request != "undefined"
 const $ = new Env('宠汪汪赛跑');
@@ -43,8 +43,8 @@ let invite_pins = ["jd_6cd93e613b0e5,被折叠的记忆33,jd_704a2e5e28a66,jd_45
 //下面给出好友赛跑助力的示例填写规则
 let run_pins = ["被折叠的记忆33,jd_6cd93e613b0e5,jd_45a6b5953b15b,jd_66f5cecc1efcd,jd_sIhNpDXJehOr,jd_41345a6f96aa5,jd_704a2e5e28a66,zooooo58,jd_5851f32d4a083,jd_mCbhXxmqzYJC"];
 let temp = run_pins[0].split(',')
-let fixPins = temp.splice(temp.indexOf('被折叠的记忆33'), 1);
-fixPins.push(...temp.splice(temp.indexOf('jd_6cd93e613b0e5'), 1));
+let fixPins = temp.splice(temp.indexOf('jd_6cd93e613b0e5'), 1);
+fixPins.push(...temp.splice(temp.indexOf('被折叠的记忆33'), 1));
 const randomPins = getRandomArrayElements(temp, 4);
 temp = [...fixPins, ...randomPins];
 run_pins = [temp.join(',')];
@@ -124,7 +124,7 @@ async function getToken() {
       count ++;
       console.log(`count: ${count}`)
       $.setdata(`${count}`, 'countFlag');
-      if ($.getdata('countFlag') * 1 === 3) {
+      if ($.getdata('countFlag') * 1 >= 2) {
         count = 0;
         $.setdata(`${count}`, 'countFlag');
         $.msg($.name, '更新Token: 成功🎉', ``);
